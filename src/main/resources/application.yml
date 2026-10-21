@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: tableturn
+  datasource:
+    url: jdbc:h2:file:./data/tableturn
+  sql:
+    init:
+      mode: always
+
+server:
+  address: 127.0.0.1
+  port: 8080
+
+default-quote-minutes: 40
+seed-dir: seed
