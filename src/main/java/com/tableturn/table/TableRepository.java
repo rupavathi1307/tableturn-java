@@ -31,6 +31,12 @@ public class TableRepository {
                 .params(branchId, no).query(Row.class).optional();
     }
 
+    /** The seats of the largest table in the branch: no party bigger than this can ever be seated. */
+    public int largest(long branchId) {
+        return jdbc.sql("SELECT MAX(seats) FROM tables WHERE branch_id = ?").param(branchId)
+                .query(Integer.class).single();
+    }
+
     public void insert(long branchId, String no, int seats, Section section) {
         jdbc.sql("INSERT INTO tables (branch_id, no, seats, section) VALUES (?, ?, ?, ?)")
                 .params(branchId, no, seats, section.name()).update();
