@@ -19,14 +19,17 @@ CREATE TABLE IF NOT EXISTS tables (
 );
 
 -- The waitlist. A party's position is counted when it joins (1 + the parties waiting) and stored.
+-- The wait the party was quoted when it joined, and the real wait, stamped once when it is seated.
 CREATE TABLE IF NOT EXISTS parties (
-    id        BIGINT AUTO_INCREMENT PRIMARY KEY,
-    branch_id BIGINT      NOT NULL REFERENCES branches (id),
-    name      VARCHAR(60) NOT NULL,
-    covers    INT         NOT NULL,
-    phone     VARCHAR(16),
-    state     VARCHAR(10) NOT NULL,
-    joined_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    position  INT         NOT NULL
+    id             BIGINT AUTO_INCREMENT PRIMARY KEY,
+    branch_id      BIGINT                   NOT NULL REFERENCES branches (id),
+    name           VARCHAR(60)              NOT NULL,
+    covers         INT                      NOT NULL,
+    phone          VARCHAR(16),
+    state          VARCHAR(10)              NOT NULL,
+    joined_at      TIMESTAMP WITH TIME ZONE NOT NULL,
+    position       INT                      NOT NULL,
+    quoted_minutes INT                      NOT NULL,
+    quoted_at      TIMESTAMP WITH TIME ZONE NOT NULL,
+    waited_minutes INT
 );
- 
